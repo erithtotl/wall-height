@@ -14,6 +14,15 @@
   "esmodules": [
     "scripts/wall-height.js"
   ],
+  "packs": [
+    {
+      "name": "wall-height-macros",
+      "label": "Wall Height Macros",
+      "path": "packs/macros.db",
+      "entity": "Macro",
+      "package": "Wall Height",
+      "module": "wall-height"
+    }],
   "minimumCoreVersion": "0.7.2",
   "compatibleCoreVersion": "0.7.9",
   "url": "https://github.com/schultzcole/FVTT-Wall-Height",

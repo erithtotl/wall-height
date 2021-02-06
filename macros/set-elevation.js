@@ -5,7 +5,7 @@ new Dialog({
     <form>
       <div class="form-group">
         <label>Elevation Value:</label>
-        <input id="token-elevation" name="token-elevation" type="number" step="1" defaultValue="0"/>
+        <input id="token-elevation" name="token-elevation" type="number" step="1" value="0"/>
       </div>
     </form>
     `,
@@ -25,7 +25,11 @@ new Dialog({
     if (applyChanges) {
       for ( let token of canvas.tokens.controlled ) {
        let elevation = html.find('[name="token-elevation"]')[0].value || "0";
-       token.data.elevation=elevation;
+       token.update({
+           "elevation": parseInt(elevation)
+       });
+       //token.data.elevation=parseInt(elevation);
+
       }
     }
   }
