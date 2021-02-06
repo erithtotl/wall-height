@@ -8,3 +8,9 @@ export function getWallBounds(wall) {
 
     return { wallHeightTop, wallHeightBottom }
 }
+
+export function getSceneSettings(scene) {
+    let advancedVision = scene.data.flags?.wallHeight?.wallHeightAdvancedVision;
+    let advancedMovement = scene.data.flags?.wallHeight?.wallHeightAdvancedMovement;
+    return {advancedVision,advancedMovement};
+}

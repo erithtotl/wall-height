@@ -1,13 +1,14 @@
 import { MODULE_SCOPE, TOP_KEY, BOTTOM_KEY } from "./const.js";
-import { getWallBounds } from "./utils.js";
+import { getWallBounds,getSceneSettings } from "./utils.js";
 
 export function Patch_Token_onUpdate() {
     const oldOnUpdate = Token.prototype._onUpdate;
     Token.prototype._onUpdate = function (data, options) {
         oldOnUpdate.apply(this, arguments);
-
+        const {advancedVision,advancedMovement} = getSceneSettings(canvas.scene);
         const changed = new Set(Object.keys(data));
-
+        if(!advancedVision)
+            return;
         // existing conditions that have already been checked to perform a sight layer update
         const visibilityChange = changed.has("hidden");
         const positionChange = ["x", "y"].some((c) => changed.has(c));
@@ -31,10 +32,10 @@ export function Patch_Token_onUpdate() {
         // if the original _onUpdate didn't perform a sight layer update,
         // but elevation has changed, do the update now
         if (changed.has("elevation") && !alreadyUpdated) {
-            canvas.sight.updateToken(this, { defer: true });
-            canvas.addPendingOperation("SightLayer.update", canvas.sight.update, canvas.sight);
-            canvas.addPendingOperation("LightingLayer.update", canvas.lighting.update, canvas.lighting);
-            canvas.addPendingOperation(`SoundLayer.update`, canvas.sounds.update, canvas.sounds);
+            this.updateSource(true);
+            canvas.addPendingOperation("SightLayer.refresh", canvas.sight.refresh, canvas.sight);
+            canvas.addPendingOperation("LightingLayer.refresh", canvas.lighting.refresh, canvas.lighting);
+            canvas.addPendingOperation(`SoundLayer.refresh`, canvas.sounds.refresh, canvas.sounds);
         }
     };
 }
@@ -47,14 +48,15 @@ export function Patch_WallCollisions() {
     Token.prototype.updateSource = function () {
         currentTokenElevation = this.data.elevation;
         oldTokenUpdateSource.apply(this, arguments);
-        //currentTokenElevation = null;
+//        currentTokenElevation = null;
     };
 
     const oldWallsLayerTestWall = WallsLayer.testWall;
     WallsLayer.testWall = function (ray, wall) {
         const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
+        const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
         if (
-            currentTokenElevation == null ||
+            currentTokenElevation == null || !advancedVision ||
             (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
         ) {
             return oldWallsLayerTestWall.apply(this, arguments);
@@ -62,30 +64,4 @@ export function Patch_WallCollisions() {
             return null;
         }
     };
-
-    const oldgetRayCollisions = WallsLayer.getRayCollisions;
-    WallsLayer.getRayCollisions = function (ray, {blockMovement=true, blockSenses=true, mode="all", _performance}={}) {
-        let result=null
-        if(!blockMovement)
-            return oldgetRayCollisions.apply(this,arguments);
-        else
-        {
-            var options= { blockMovement: blockMovement, blockSenses: blockSenses, mode: "all"};
-		const args = [ray, options];
-            result= oldgetRayCollisions.apply(this,args);
-        }
-        if(!blockMovement || !result)
-            return result;
-        if(result && result.length>0){
-            var element;
-            for(var count=0;count<result[0].nodes[0].objects.length;count++) {
-               element=result[0].nodes[0].objects[count]; 
-               const {wallHeightTop, wallHeightBottom} = getWallBounds(element.t);
-               if (currentTokenElevation == null || (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)) {
-                   return true;
-               }
-            }
-        }
-        return null;
-    }
 }
