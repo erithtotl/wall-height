@@ -14,6 +14,8 @@ The top and bottom heights of the walls are configurable in the wall configurati
 
 ![Preview](wall-height.gif)
 
+Finally, 3.5 adds a Macro Compendium, with a Set Elevation macro, which allows for quick updating of the elevation of multiple tokens, handy when the party is moving to different levels on a multilevel map.
+
 ## Project Status
 
 Wall Height was originally released as a proof of concept to show that just a feature was possible by (cole#9640). I am now maintaining and adding to this modules and accepting feature requests.

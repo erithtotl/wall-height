@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [3.5.0] 2021-02-06 - Taken over by Erithtotl
+
+### FIXED
+
+- Changed the .update calls to .refresh calls on layers and token to remove deprecated calls.
+
+### CHANGED
+
+  - Added movement above and below walls as well as vision
+  - Added scene specific setting to enable/disable wall height (many scenes have no need for the feature)
+  - Added Compendium and macro to enable bulk setting of token elevations for quick party transitions
+
 ## [3.0.1] 2020-12-16
 
 ### FIXED
