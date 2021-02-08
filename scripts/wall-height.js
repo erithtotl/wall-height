@@ -44,7 +44,7 @@ Hooks.on("renderSceneConfig", (app, html, data) => {
         <div class="form-group">
             <li class="flexrow">
                 <label>${enableVisionKeyLabel}</label>
-                <input name="flags.${MODULE_SCOPE}.${ENABLE_ADVANCED_VISION_KEY}" type="checkbox" data-dtype="boolean" value="true" `+ (advancedVision?`checked`:``)+`>
+                <input name="flags.${MODULE_SCOPE}.${ENABLE_ADVANCED_VISION_KEY}" type="checkbox" data-dtype="boolean" value="true" `+ ((advancedVision || advancedVision==null)?`checked`:``)+`>
             </li>
         </div>
     </fieldset>`
