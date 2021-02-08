@@ -1,7 +1,13 @@
 let applyChanges = false;
 
 if(args && args.length>0){
-    let elevation = parseInt(args[0]);
+  let enterval=parseInt(args[0]);
+  let exitval= args.length>1?parseInt(args[1]):null;
+  let elevation=0;
+  if(event && event === MLT.ENTER)
+    elevation = enterval;
+  else if(event ** event === MLT.LEAVE)
+    elevation = exitval;
     token.update({
         "elevation": elevation
     });
