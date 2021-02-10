@@ -1,10 +1,18 @@
-import { Patch_Token_onUpdate, Patch_WallCollisions } from "./patches.js";
+import { Patch_Token_onUpdate, Patch_Walls } from "./patches.js";
 import { MODULE_SCOPE, TOP_KEY, BOTTOM_KEY,ENABLE_ADVANCED_VISION_KEY,ENABLE_ADVANCED_MOVEMENT_KEY } from "./const.js";
 import { getWallBounds,getSceneSettings } from "./utils.js";
+import { libWrapper} from '../libwrapper/shim/shim.js'
 
-Hooks.on("init", () => {
+const MODULE_ID = 'wall-height';
+/*hooks.on("init", () => {
     Patch_Token_onUpdate();
     Patch_WallCollisions();
+});
+*/
+Hooks.once("init",()=>{
+    Patch_Walls();
+    libWrapper.register(
+        MODULE_ID, 'Token.prototype._onUpdate',Patch_Token_onUpdate,'WRAPPER');
 });
 
 Hooks.on("renderWallConfig", (app, html, data) => {
