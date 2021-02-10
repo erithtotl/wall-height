@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [3.5.2] 2021-02-10
+
+### FIXED
+
+Scenes now default to 'on' for wall-height for backwards compatability
+
+### CHANGED
+
+   - Updated set-elevation macro with support for Multilevel tokens
+   - added libwrapper support for better mod compatability
+
+
 ## [3.5.0] 2021-02-06 - Taken over by Erithtotl
 
 ### FIXED
