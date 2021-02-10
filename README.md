@@ -16,11 +16,20 @@ The top and bottom heights of the walls are configurable in the wall configurati
 
 Finally, 3.5 adds a Macro Compendium, with a Set Elevation macro, which allows for quick updating of the elevation of multiple tokens, handy when the party is moving to different levels on a multilevel map.
 
+With 3.5.2, the Set Elevation macro has been modified to support Multilevel Tokens (https://foundryvtt.com/packages/multilevel-tokens/) (can accept one or two parameters for entry and exit elevations).
+
+In addition, libWrapper support has been introduced to improve module compatability.
+
 ## Project Status
 
 Wall Height was originally released as a proof of concept to show that just a feature was possible by (cole#9640). I am now maintaining and adding to this modules and accepting feature requests.
 
 In addition to adding movement and the scene by scene enablement, I have update the code to use the latest vision refresh methods.
+
+A couple of future ideas:
+1) Implement some sort of wall library feature so that you can select from a number of pre-configured walls instead of having to set them by hand
+2) Mouse over for walls in the wall interface, so you can see the heights without having to drill in
+3) better support for lighting.  Currently, wall height does not affect lighting visibility (so if you are under the ground in a hallway, but there is a light above ground, the stretch of hallway you can see that intersects with the light will be illuminated.
 
 ## Compatibility
 
