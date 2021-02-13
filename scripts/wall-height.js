@@ -2,6 +2,7 @@ import { Patch_Token_onUpdate, Patch_Walls } from "./patches.js";
 import { getWallBounds,getSceneSettings } from "./utils.js";
 import { libWrapper} from '../shim.js';
 import { WallHeightToolTip } from './tooltip.js';
+import { MODULE_SCOPE, TOP_KEY, BOTTOM_KEY, ENABLE_ADVANCED_VISION_KEY, ENABLE_ADVANCED_MOVEMENT_KEY } from "./const.js";
 
 const MODULE_ID = 'wall-height';
 /*hooks.on("init", () => {
