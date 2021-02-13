@@ -1,6 +1,6 @@
 import { Patch_Token_onUpdate, Patch_Walls } from "./patches.js";
 import { getWallBounds,getSceneSettings } from "./utils.js";
-import { libWrapper} from '../libwrapper/shim/shim.js';
+import { libWrapper} from '../shim.js';
 import { WallHeightToolTip } from './tooltip.js';
 
 const MODULE_ID = 'wall-height';
