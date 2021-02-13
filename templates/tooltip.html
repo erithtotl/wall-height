@@ -1,0 +1,16 @@
+<form id="{{id}}" class="{{classes}}" data-appid="{{appId}}" autocomplete="off">
+    <span class='name'>T:</span>
+    <span class='value'>{{#if flags.wallHeight.wallHeightTop}}
+        {{{flags.wallHeight.wallHeightTop}}}
+    {{else}}
+        <i class="fas fa-infinity"></i>
+    {{/if}}
+    </span>
+    <span class='name'>B:</span>
+    <span class='value'>{{#if flags.wallHeight.wallHeightBottom}}
+        {{{flags.wallHeight.wallHeightBottom}}}
+    {{else}}
+        <i class="fas fa-infinity"></i>
+    {{/if}}
+    </span>
+</form>

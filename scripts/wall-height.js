@@ -1,7 +1,7 @@
 import { Patch_Token_onUpdate, Patch_Walls } from "./patches.js";
-import { MODULE_SCOPE, TOP_KEY, BOTTOM_KEY,ENABLE_ADVANCED_VISION_KEY,ENABLE_ADVANCED_MOVEMENT_KEY } from "./const.js";
 import { getWallBounds,getSceneSettings } from "./utils.js";
-import { libWrapper} from '../libwrapper/shim/shim.js'
+import { libWrapper} from '../libwrapper/shim/shim.js';
+import { WallHeightToolTip } from './tooltip.js';
 
 const MODULE_ID = 'wall-height';
 /*hooks.on("init", () => {
@@ -13,7 +13,33 @@ Hooks.once("init",()=>{
     Patch_Walls();
     libWrapper.register(
         MODULE_ID, 'Token.prototype._onUpdate',Patch_Token_onUpdate,'WRAPPER');
+    Hooks.on('renderHeadsUpDisplay', async (app, html, data) => {
+            html.append('<template id="wall-height-tooltip"></template>');
+            canvas.hud.wallHeight = new WallHeightToolTip();
+    });
+
 });
+
+Hooks.on("hoverWall",(wall, hovered)=>{
+    if (hovered) {
+        canvas.hud.wallHeight.bind(wall);
+    } else {
+        canvas.hud.wallHeight.clear();
+    }
+});
+
+/*Hooks.on('ready', async () => {
+
+
+    Hooks.on('deleteToken', (...args) => {
+        if (!canvas.hud.Wall) return;
+        canvas.hud.Wall.clear();
+    })
+    
+});
+*/
+
+
 
 Hooks.on("renderWallConfig", (app, html, data) => {
     const {advancedVision,advancedMovement} = getSceneSettings(canvas.scene);

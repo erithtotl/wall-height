@@ -1,0 +1,17 @@
+#wall-height-tooltip {
+    display: grid;
+    grid-template-columns: 42px 58px;
+    grid-auto-rows: auto;
+    justify-items: start;
+    align-content: start;
+    justify-content: start;
+    padding: 3px 0;
+    color: #f1f1f1;
+    border: 2px solid;
+    border-radius: 5px;
+    background-color:rgba(0, 0, 0, 0.6);
+  }
+  #wall-height-tooltip span {
+    padding: 0 3px;
+    text-align: left;
+  }
