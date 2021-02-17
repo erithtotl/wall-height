@@ -1,3 +1,4 @@
+//import { Patch_Token_onUpdate, Patch_Walls } from "./patches.js";
 import { Patch_Token_onUpdate, Patch_Walls } from "./patches.js";
 import { getWallBounds,getSceneSettings } from "./utils.js";
 import { libWrapper} from '../shim.js';
@@ -5,11 +6,8 @@ import { WallHeightToolTip } from './tooltip.js';
 import { MODULE_SCOPE, TOP_KEY, BOTTOM_KEY, ENABLE_ADVANCED_VISION_KEY, ENABLE_ADVANCED_MOVEMENT_KEY } from "./const.js";
 
 const MODULE_ID = 'wall-height';
-/*hooks.on("init", () => {
-    Patch_Token_onUpdate();
-    Patch_WallCollisions();
-});
-*/
+
+
 Hooks.once("init",()=>{
     Patch_Walls();
     libWrapper.register(
@@ -20,6 +18,8 @@ Hooks.once("init",()=>{
     });
 
 });
+
+
 
 Hooks.on("hoverWall",(wall, hovered)=>{
     if (hovered) {
@@ -44,7 +44,7 @@ Hooks.on("hoverWall",(wall, hovered)=>{
 
 Hooks.on("renderWallConfig", (app, html, data) => {
     const {advancedVision,advancedMovement} = getSceneSettings(canvas.scene);
-    if(!advancedVision)
+    if(advancedVision!=null && !advancedVision)
         return;
     const { wallHeightTop, wallHeightBottom } = getWallBounds(app.object);
     const topLabel = game.i18n.localize(`${MODULE_SCOPE}.WallHeightTopLabel`);

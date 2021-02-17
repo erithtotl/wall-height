@@ -52,17 +52,18 @@ export function Patch_Walls()
     //        currentTokenElevation = null;
         },'WRAPPER');
 
-    libWrapper.register(
-        MODULE_ID, 'WallsLayer.testWall', function Patch_TestWall (wrapped,ray,wall) {
-            const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
-            const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
-            if (
-                currentTokenElevation == null || !advancedVision ||
-                (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
-            ) {
-                return wrapped(ray,wall);
-            } else {
-                return null;
-            }
-        });
+    const oldWallsLayerTestWall = WallsLayer.testWall;
+    WallsLayer.testWall = function (ray, wall) {
+        const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
+        const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
+        if (
+            currentTokenElevation == null || !advancedVision ||
+            (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
+        ) {
+            return oldWallsLayerTestWall.apply(this, arguments);
+        } else {
+            return null;
+        }
+    };
 }
+
