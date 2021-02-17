@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [3.5.3] 2021-02-06 - Taken over by Erithtotl
+
+### CHANGED
+
+  - Added libwrapper support
+  - Modified macro to support multilevel tokens
+  - added tooltip for wall layer
+  
+### FIXED
+
+  - corrected some errors related to libwrapper shim file
+  
 ## [3.5.0] 2021-02-06 - Taken over by Erithtotl
 
 ### FIXED
