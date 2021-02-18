@@ -1,6 +1,17 @@
 # CHANGELOG
+## [3.5.3.3] 2021-02-18
 
-## [3.5.3] 2021-02-06 - Taken over by Erithtotl
+### CHANGED
+
+  - Added setting to enable/disable tooltip
+  - Edited tooltip to be less intrusive
+
+### FIXED
+
+  - Removed libwrapper from the 'testWall' core function, which gets called 10s of thousands of times and creates a perf hit
+  - Corrected the way the tooltip was defined so that a 'phantom line' doesn't appear on the canvas
+
+## [3.5.3] 2021-02-03
 
 ### CHANGED
 
