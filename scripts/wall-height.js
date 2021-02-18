@@ -13,13 +13,14 @@ Hooks.once("init",()=>{
     libWrapper.register(
         MODULE_ID, 'Token.prototype._onUpdate',Patch_Token_onUpdate,'WRAPPER');
     Hooks.on('renderHeadsUpDisplay', async (app, html, data) => {
+        if(game.settings.get(MODULE_ID,'enableTooltip')){
             html.append('<template id="wall-height-tooltip"></template>');
             canvas.hud.wallHeight = new WallHeightToolTip();
+        }
     });
+    registerSettings();
 
 });
-
-
 
 Hooks.on("hoverWall",(wall, hovered)=>{
     if (hovered) {
@@ -40,7 +41,16 @@ Hooks.on("hoverWall",(wall, hovered)=>{
 });
 */
 
-
+function registerSettings() {
+    game.settings.register(MODULE_ID, 'enableTooltip', {
+        name: 'Enable Tooltip',
+        hint: 'Enables the tooltip on the walls layer, showing top and bottom dimensions of walls. If you currently have the wall layer up, you should refresh or move to another scene and back to refresh.',
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        default: true
+    });
+}
 
 Hooks.on("renderWallConfig", (app, html, data) => {
     const {advancedVision,advancedMovement} = getSceneSettings(canvas.scene);

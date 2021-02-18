@@ -38,11 +38,12 @@ export class WallHeightToolTip extends BasePlaceableHUD {
 		if (!this.object) return;
         //let centerPoint=translatePoint(this.object.center,this.object.parent.parent,canvas.stage);
         const position = {
-	        width: canvas.grid.size *1.5,
-            height: canvas.grid.size,
-            left: this.object.center.x,
-			top: this.object.center.y,
-			"font-size": canvas.grid.size / 3 + "px"
+	        width: canvas.grid.size *1.2,
+            height: canvas.grid.size *.8,
+            left: this.object.center.x+20,
+			top: this.object.center.y+20,
+      "font-size": canvas.grid.size / 3.5 + "px",
+      "display" : "grid"
         };
 	    this.element.css(position);
     }
