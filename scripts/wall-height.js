@@ -23,6 +23,9 @@ Hooks.once("init",()=>{
 });
 
 Hooks.on("hoverWall",(wall, hovered)=>{
+    const {advancedVision,advancedMovement} = getSceneSettings(canvas.scene);
+    if(advancedVision!=null && !advancedVision)
+        return;
     if (hovered) {
         canvas.hud.wallHeight.bind(wall);
     } else {
