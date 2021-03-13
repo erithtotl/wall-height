@@ -100,5 +100,13 @@ Hooks.on("renderSceneConfig", (app, html, data) => {
     //app.setPosition({ height: "auto" });
 });
 
+Handlebars.registerHelper('if_null', function(a, opts) {
+    if (a == null) {
+        return opts.fn(this);
+    } else {
+        return opts.inverse(this);
+    }
+});
+
 
 

@@ -1,4 +1,12 @@
 # CHANGELOG
+## [3.5.3.4] 2021-03-13
+
+### FIXED
+
+  - Disabling wall-height for scene also disables tooltip
+  - Tooltip now displays zero values properly
+  - Scene on/off now registers properly as 'enabled' if never set (defaults to true)
+
 ## [3.5.3.3] 2021-02-18
 
 ### CHANGED

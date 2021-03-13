@@ -19,6 +19,8 @@ function translatePoint(point, context1, context2) {
     return tp;
   }
 
+  
+
 export class WallHeightToolTip extends BasePlaceableHUD {
 
 	static get defaultOptions() {
