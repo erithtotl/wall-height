@@ -6,7 +6,8 @@
   - Disabling wall-height for scene also disables tooltip
   - Tooltip now displays zero values properly
   - Scene on/off now registers properly as 'enabled' if never set (defaults to true)
-
+  - Updated setElevation macro to support decimals
+  
 ## [3.5.3.3] 2021-02-18
 
 ### CHANGED

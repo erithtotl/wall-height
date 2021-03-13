@@ -1,8 +1,9 @@
 let applyChanges = false;
 
 if(args && args.length>0){
-  let enterval=parseInt(args[0]);
-  let exitval= args.length>1?parseInt(args[1]):null;
+console.log(args);
+  let enterval=parseFloat(args[0]);
+  let exitval= args.length>1?parseFloat(args[1]):null;
   let elevation=0;
   if(event && event === MLT.ENTER)
     elevation = enterval;
@@ -41,7 +42,7 @@ else
         for ( let token of canvas.tokens.controlled ) {
         let elevation = html.find('[name="token-elevation"]')[0].value || "0";
         token.update({
-            "elevation": parseInt(elevation)
+            "elevation": parseFloat(elevation)
         });
         //token.data.elevation=parseInt(elevation);
 
