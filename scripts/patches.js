@@ -53,9 +53,10 @@ export function Patch_Walls()
         },'WRAPPER');
 
     const oldWallsLayerTestWall = WallsLayer.testWall;
-    WallsLayer.testWall = function (ray, wall) {
+    WallsLayer.testWall = function (ray, wall, roomTest) {
         const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
         const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
+        if(roomTest) currentTokenElevation=roomTest
         if (
             currentTokenElevation == null || !advancedVision ||
             (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
@@ -66,4 +67,3 @@ export function Patch_Walls()
         }
     };
 }
-
