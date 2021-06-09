@@ -2,7 +2,7 @@
   "name": "wall-height",
   "title": "Wall Height",
   "description": "Adds the ability to set wall height for walls so that tokens can look and move over them.",
-  "version": "3.5.3.4",
+  "version": "3.5.3.5",
   "author": "Ian Murphy (Erithtotl#5139), forked from Cole Schultz (cole#9640)",
   "languages": [
     {
@@ -24,13 +24,13 @@
       "module": "wall-height"
     }],
   "minimumCoreVersion": "0.7.2",
-  "compatibleCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.8.6",
   "styles": [ "wall-height.css" ],
   "url": "https://github.com/erithtotl/FVTT-Wall-Height",
   "manifest": "https://raw.githubusercontent.com/erithtotl/FVTT-Wall-Height/master/module.json",
-  "download": "https://github.com/erithtotl/FVTT-Wall-Height/archive/3.5.3.4.zip",
-  "license": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.4/LICENSE",
-  "readme": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.4/README.md",
-  "changelog": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.4/CHANGELOG.md"
+  "download": "https://github.com/erithtotl/FVTT-Wall-Height/archive/3.5.3.5.zip",
+  "license": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.5/LICENSE",
+  "readme": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.5/README.md",
+  "changelog": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.5/CHANGELOG.md"
 
 }
