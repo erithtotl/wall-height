@@ -1,4 +1,10 @@
 # CHANGELOG
+
+## [3.5.3.5] 2021-06-08
+
+  - Patch for 'Levels' support
+
+
 ## [3.5.3.4] 2021-03-13
 
 ### FIXED
