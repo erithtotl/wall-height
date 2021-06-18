@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [3.5.3.6] 2021-06-08
+
+  -  'Levels' support bugfix
+  -  libwrapper shim support
+
 ## [3.5.3.5] 2021-06-08
 
   - Patch for 'Levels' support
