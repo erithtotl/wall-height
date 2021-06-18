@@ -1,5 +1,6 @@
 import { MODULE_SCOPE, TOP_KEY, BOTTOM_KEY } from "./const.js";
 import { getWallBounds,getSceneSettings } from "./utils.js";
+import {libWrapper} from '../shim.js';
 
 const MODULE_ID = 'wall-height';
 export function Patch_Token_onUpdate(func,data,options) {
@@ -56,14 +57,25 @@ export function Patch_Walls()
     WallsLayer.testWall = function (ray, wall, roomTest) {
         const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
         const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
-        if(roomTest) currentTokenElevation=roomTest
-        if (
-            currentTokenElevation == null || !advancedVision ||
-            (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
-        ) {
-            return oldWallsLayerTestWall.apply(this, arguments);
-        } else {
-            return null;
+        if(roomTest || roomTest==0){
+            if (
+                roomTest == null || !advancedVision ||
+                (roomTest >= wallHeightBottom && roomTest < wallHeightTop)
+            ) {
+                return oldWallsLayerTestWall.apply(this, arguments);
+            } else {
+                return null;
+            }
+        } else{
+            if (
+                currentTokenElevation == null || !advancedVision ||
+                (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
+            ) {
+                return oldWallsLayerTestWall.apply(this, arguments);
+            } else {
+                return null;
+            }
         }
+        
     };
 }
