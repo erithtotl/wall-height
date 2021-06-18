@@ -2,7 +2,7 @@
   "name": "wall-height",
   "title": "Wall Height",
   "description": "Adds the ability to set wall height for walls so that tokens can look and move over them.",
-  "version": "3.5.3.5",
+  "version": "3.5.3.6",
   "author": "Ian Murphy (Erithtotl#5139), forked from Cole Schultz (cole#9640)",
   "languages": [
     {
