@@ -28,9 +28,9 @@
   "styles": [ "wall-height.css" ],
   "url": "https://github.com/erithtotl/FVTT-Wall-Height",
   "manifest": "https://raw.githubusercontent.com/erithtotl/FVTT-Wall-Height/master/module.json",
-  "download": "https://github.com/erithtotl/FVTT-Wall-Height/archive/3.5.3.5.zip",
-  "license": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.5/LICENSE",
-  "readme": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.5/README.md",
-  "changelog": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.5/CHANGELOG.md"
+  "download": "https://github.com/erithtotl/FVTT-Wall-Height/archive/3.5.3.6.zip",
+  "license": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.6/LICENSE",
+  "readme": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.6/README.md",
+  "changelog": "https://github.com/erithtotl/FVTT-Wall-Height/blob/3.5.3.6/CHANGELOG.md"
 
 }
