@@ -47,8 +47,8 @@ export function Patch_Walls()
     libWrapper.register(
         MODULE_ID, 'Token.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
             // store the token elevation in a common scope, so that it can be used by the following functions without needing to pass it explicitly
-        
-            currentTokenElevation = this.data.elevation;
+            
+            currentTokenElevation = _levels && _levels.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
            wrapped(...args);
     //        currentTokenElevation = null;
         },'WRAPPER');
@@ -57,7 +57,7 @@ export function Patch_Walls()
     WallsLayer.testWall = function (ray, wall, roomTest) {
         const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
         const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
-        if(roomTest || roomTest==0){
+        if(roomTest || roomTest===0){
             if (
                 roomTest == null || !advancedVision ||
                 (roomTest >= wallHeightBottom && roomTest < wallHeightTop)
