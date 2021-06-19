@@ -48,7 +48,7 @@ export function Patch_Walls()
         MODULE_ID, 'Token.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
             // store the token elevation in a common scope, so that it can be used by the following functions without needing to pass it explicitly
             
-            currentTokenElevation = _levels && _levels.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
+            currentTokenElevation = (typeof _levels !== 'undefined') && _levels?.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
            wrapped(...args);
     //        currentTokenElevation = null;
         },'WRAPPER');
