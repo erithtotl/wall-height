@@ -44,12 +44,14 @@ export function Patch_Token_onUpdate(func,data,options) {
 export function Patch_Walls()
 {
     game.currentTokenElevation = null;
+    game.currentTokenHeight = 0;
     let currentTokenElevation=null; //for backwards compatability
     libWrapper.register(
         MODULE_ID, 'Token.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
             // store the token elevation in a common scope, so that it can be used by the following functions without needing to pass it explicitly
             
             game.currentTokenElevation = (typeof _levels !== 'undefined') && _levels?.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
+            game.currentTokenHeight = game.settings.get(MODULE_ID,'enableTokenHeight') ? this.data.height * canvas.scene.data.gridDistance : 0
             currentTokenElevation=game.currentTokenElevation;
             wrapped(...args);
     //        currentTokenElevation = null;
@@ -71,7 +73,7 @@ export function Patch_Walls()
         } else{
             if (
                 game.currentTokenElevation == null || !advancedVision ||
-                (game.currentTokenElevation >= wallHeightBottom && game.currentTokenElevation < wallHeightTop)
+                (game.currentTokenElevation >= wallHeightBottom && game.currentTokenElevation + game.currentTokenHeight < wallHeightTop)
             ) {
                 return oldWallsLayerTestWall.apply(this, arguments);
             } else {
