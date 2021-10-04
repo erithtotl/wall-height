@@ -45,7 +45,7 @@ export function Patch_Walls()
     let currentTokenElevation = null;
 
     libWrapper.register(
-        MODULE_ID, 'Token.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
+        MODULE_ID, 'CONFIG.Token.objectClass.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
             // store the token elevation in a common scope, so that it can be used by the following functions without needing to pass it explicitly
             
             currentTokenElevation = _levels && _levels.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;

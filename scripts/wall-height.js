@@ -11,7 +11,7 @@ const MODULE_ID = 'wall-height';
 Hooks.once("init",()=>{
     Patch_Walls();
     libWrapper.register(
-        MODULE_ID, 'Token.prototype._onUpdate',Patch_Token_onUpdate,'WRAPPER');
+        MODULE_ID, 'CONFIG.Token.objectClass.prototype._onUpdate',Patch_Token_onUpdate,'WRAPPER');
     Hooks.on('renderHeadsUpDisplay', async (app, html, data) => {
         if(game.settings.get(MODULE_ID,'enableTooltip')){
             html.append('<template id="wall-height-tooltip"></template>');
