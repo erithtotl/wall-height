@@ -7,11 +7,11 @@ console.log(args);
   let elevation=0;
   if(event && event === MLT.ENTER)
     elevation = enterval;
-  else if(event ** event === MLT.LEAVE)
+  else if(event && event === MLT.LEAVE)
     elevation = exitval;
-    token.update({
-        "elevation": elevation
-    });
+  token.update({
+   "elevation": elevation
+  });
 }
 else
 {
