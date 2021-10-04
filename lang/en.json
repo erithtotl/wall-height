@@ -4,6 +4,8 @@
         "WallHeightBottomLabel": "Wall Height (Bottom)",
         "AdvancedVisionLabel": "Enable Wall-Height For This Scene",
         "AdvancedMovementLabel": "Enable Wall-Height Movement For This Scene",
-        "ModuleLabel": "Wall Height"
+        "ModuleLabel": "Wall Height",
+        "enableTokenHeight.name": "Enable Token Height",
+        "enableTokenHeight.hint": "Include a token's height (scaled for the scene) when checking if it can see over a wall."
     }
 }
