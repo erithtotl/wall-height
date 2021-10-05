@@ -6,7 +6,11 @@ Thank you to Cole Schultz (cole#9640) for the original implementation. I  have n
 
 Adds the ability to set wall height for walls so that tokens can look over them (or under them).  3.5 adds the ability to MOVE over and under walls as well.
 
-3.5 also adds the ability to enable this feature on a scene by scene basis, as many maps may find it unnecessary:
+3.5 also adds the ability to enable this feature on a scene by scene basis, as many maps may find it unnecessary.
+
+Some new features added by the community.  Token height functionality (enabled in Module settings).  This allows tokens to look over walls.  This may not be compatible with all modules so use at your own risk.
+
+Also received a community spanish translation!
 
 ![Preview](scene-config.png)
 
