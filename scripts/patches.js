@@ -47,7 +47,7 @@ export function Patch_Walls()
     game.currentTokenHeight = 0;
     let currentTokenElevation=null; //for backwards compatability
     libWrapper.register(
-        MODULE_ID, 'Token.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
+        MODULE_ID, 'CONFIG.Token.objectClass.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
             // store the token elevation in a common scope, so that it can be used by the following functions without needing to pass it explicitly
             
             game.currentTokenElevation = (typeof _levels !== 'undefined') && _levels?.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
