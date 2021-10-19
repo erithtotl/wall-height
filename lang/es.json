@@ -8,6 +8,8 @@
         "WallHeightBottomLabel": "Altura del muro (Abajo)",
         "AdvancedVisionLabel": "Habilitar altura de los muros para esta escena",
         "AdvancedMovementLabel": "Habilitar movimiento con la altura de los muros para esta escena",
-        "ModuleLabel": "Altura del muro"
+        "ModuleLabel": "Altura de muros",
+        "enableTokenHeight.name": "Habilitar altura de muros",
+        "enableTokenHeight.hint": "Incluye la altura del icono (debidamente escalada a la escena) cuando se compruebe si se puede ver sobre un muro"
     }
 }
