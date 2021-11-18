@@ -3,6 +3,7 @@ import { getWallBounds,getSceneSettings } from "./utils.js";
 import {libWrapper} from '../shim.js';
 
 const MODULE_ID = 'wall-height';
+
 export function Patch_Token_onUpdate(func,data,options) {
     
     func.apply(this, [data,options]);
@@ -42,14 +43,17 @@ export function Patch_Token_onUpdate(func,data,options) {
 }
 export function Patch_Walls()
 {
-    let currentTokenElevation = null;
-
+    game.currentTokenElevation = null;
+    game.currentTokenHeight = 0;
+    let currentTokenElevation=null; //for backwards compatability
     libWrapper.register(
         MODULE_ID, 'CONFIG.Token.objectClass.prototype.updateSource',function Patch_UpdateSource(wrapped,...args) {
             // store the token elevation in a common scope, so that it can be used by the following functions without needing to pass it explicitly
             
-            currentTokenElevation = _levels && _levels.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
-           wrapped(...args);
+            game.currentTokenElevation = (typeof _levels !== 'undefined') && _levels?.advancedLOS ? _levels.getTokenLOSheight(this) : this.data.elevation;
+            game.currentTokenHeight = game.settings.get(MODULE_ID,'enableTokenHeight') ? this.data.height * canvas.scene.data.gridDistance : 0
+            currentTokenElevation=game.currentTokenElevation;
+            wrapped(...args);
     //        currentTokenElevation = null;
         },'WRAPPER');
 
@@ -89,8 +93,8 @@ export function Patch_Walls()
             }
         } else{
             if (
-                currentTokenElevation == null || !advancedVision ||
-                (currentTokenElevation >= wallHeightBottom && currentTokenElevation < wallHeightTop)
+                game.currentTokenElevation == null || !advancedVision ||
+                (game.currentTokenElevation >= wallHeightBottom && game.currentTokenElevation + game.currentTokenHeight < wallHeightTop)
             ) {
                 return oldWallsLayerTestWall.apply(this, arguments);
             } else {

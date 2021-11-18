@@ -53,6 +53,14 @@ function registerSettings() {
         type: Boolean,
         default: true
     });
+    game.settings.register(MODULE_ID, 'enableTokenHeight', {
+        name: game.i18n.localize(`${MODULE_SCOPE}.enableTokenHeight.name`),
+        hint: game.i18n.localize(`${MODULE_SCOPE}.enableTokenHeight.hint`),
+        scope: 'world',
+        config: true,
+        type: Boolean,
+        default: false,
+    });
 }
 
 Hooks.on("renderWallConfig", (app, html, data) => {

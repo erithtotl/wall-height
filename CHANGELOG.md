@@ -1,9 +1,15 @@
 # CHANGELOG
 
-## [3.5.3.6] 2021-06-08
 
-  -  'Levels' support bugfix
-  -  libwrapper shim support
+## [3.6.0.0] 2021 Oct 5
+
+  -  integrated support for token heights
+  -  integrated Spanish language support
+  -  integrated fix for PF1 system
+ 
+## [3.5.3.9] 2021-06-08
+
+  -  added support for Lichtgeschwindigkeit 1.3.0
 
 ## [3.5.3.5] 2021-06-08
 
