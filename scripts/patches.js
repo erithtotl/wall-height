@@ -57,6 +57,27 @@ export function Patch_Walls()
     //        currentTokenElevation = null;
         },'WRAPPER');
 
+        if(game.version > 9){
+            function testWallHeight(wall){
+                const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
+                const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
+                    if (
+                        game.currentTokenElevation == null || !advancedVision ||
+                        (game.currentTokenElevation >= wallHeightBottom && game.currentTokenElevation < wallHeightTop)
+                    ) {
+                        return true
+                    } else {
+                        return null;
+                    }
+            }
+    
+            
+
+        libWrapper.register(MODULE_ID,"ClockwiseSweepPolygon.prototype._getWalls",function filterWalls(wrapped,...args) {
+            return wrapped(...args).filter(wall => testWallHeight(wall));
+        },'WRAPPER');
+        }
+
     const oldWallsLayerTestWall = WallsLayer.testWall;
     WallsLayer.testWall = function (ray, wall, roomTest) {
         const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
