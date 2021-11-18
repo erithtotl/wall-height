@@ -1,6 +1,10 @@
 # CHANGELOG
 
+## [3.6.0.1] 2021 Nov 18
 
+  - 9.0 compatability tweaks courtesy of theripper93
+  - Spanish language updates courtesy lozalojo
+  - 
 ## [3.6.0.0] 2021 Oct 5
 
   -  integrated support for token heights
