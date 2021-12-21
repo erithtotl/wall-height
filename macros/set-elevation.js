@@ -4,11 +4,14 @@ if(args && args.length>0){
 console.log(args);
   let enterval=parseFloat(args[0]);
   let exitval= args.length>1?parseFloat(args[1]):null;
+  let moveval= args.length>2?parseFloat(args[2]):null;
   let elevation=0;
   if(event && event === MLT.ENTER)
     elevation = enterval;
   else if(event && event === MLT.LEAVE)
     elevation = exitval;
+  else if(event && event === MLT.MOVE)
+    elevation = moveval;
   token.update({
    "elevation": elevation
   });
