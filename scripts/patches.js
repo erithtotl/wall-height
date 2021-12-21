@@ -63,7 +63,7 @@ export function Patch_Walls()
                 const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
                     if (
                         game.currentTokenElevation == null || !advancedVision ||
-                        (game.currentTokenElevation >= wallHeightBottom && game.currentTokenElevation < wallHeightTop)
+                        (game.currentTokenElevation >= wallHeightBottom && game.currentTokenElevation + game.currentTokenHeight < wallHeightTop)
                     ) {
                         return true
                     } else {
