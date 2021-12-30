@@ -43,14 +43,10 @@ export function Patch_Token_onUpdate(func,data,options) {
 }
 export function Patch_Walls()
 {
-    game.currentTokenName = "";
     game.currentTokenElevation = null;
     game.currentTokenHeight = 0;
     
     function updateElevations(token) {
-        console.log("New current token: " + token.data.name);
-
-        game.currentTokenName = token.data.name;
         game.currentTokenElevation = (typeof _levels !== 'undefined') && _levels?.advancedLOS ? _levels.getTokenLOSheight(token) : token.data.elevation;
         game.currentTokenHeight = game.settings.get(MODULE_ID,'enableTokenHeight') ? token.data.height * canvas.scene.data.gridDistance : 0
     }
@@ -59,7 +55,6 @@ export function Patch_Walls()
         MODULE_ID,
         'CONFIG.Token.objectClass.prototype.updateSource',
         function Patch_UpdateSource(wrapped,...args) {
-            console.log("Update Source");
             updateElevations(this);
             wrapped(...args);
         },
@@ -70,8 +65,6 @@ export function Patch_Walls()
         function testWallHeight(wall) {
             const {wallHeightTop, wallHeightBottom} = getWallBounds(wall);
             const {advancedVision, advancedMovement} = getSceneSettings(wall.scene);
-
-            console.log("Checking wall for clockwise sweep for wallHeightBottom=" + wallHeightBottom + " wallHeightTop=" + wallHeightTop);
 
             if (
                 game.currentTokenElevation == null || !advancedVision ||
@@ -87,17 +80,16 @@ export function Patch_Walls()
             MODULE_ID,
             "ClockwiseSweepPolygon.prototype._getWalls",
             function filterWalls(wrapped,...args) {
-                console.log("Filtering walls for clockwise sweep for token=" + game.currentTokenName);
                 return wrapped(...args).filter(wall => testWallHeight(wall));
             },
             'WRAPPER'
         );
 
+        // This function builds the ClockwiseSweepPolygon. Update the elevation just beforehand so we're using the correct token's elevation and height
         libWrapper.register(
             MODULE_ID,
-            "CONFIG.Token.objectClass.prototype.updateVisionSource",
+            "Token.prototype.updateVisionSource",
             function updateTokenVisionSource(wrapped, ...args) {
-                console.log("Update Vision Source");
                 updateElevations(this);
                 wrapped(...args);
             }
@@ -108,8 +100,6 @@ export function Patch_Walls()
     WallsLayer.testWall = function (ray, wall, roomTest) {
         const { wallHeightTop, wallHeightBottom } = getWallBounds(wall);
         const {advancedVision,advancedMovement} = getSceneSettings(wall.scene);
-
-        console.log("Calculating wall for token=" + game.currentTokenName + " elevation=" + game.currentTokenElevation + " wallHeightBottom=" + wallHeightBottom + " wallHeightTop=" + wallHeightTop);
 
         if(roomTest || roomTest===0){
             if (
