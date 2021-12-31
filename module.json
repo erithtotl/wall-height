@@ -29,7 +29,7 @@
       "module": "wall-height"
     }],
   "minimumCoreVersion": "0.7.2",
-  "compatibleCoreVersion": "0.9.0",
+  "compatibleCoreVersion": "9",
   "styles": [ "wall-height.css" ],
   "url": "https://github.com/erithtotl/FVTT-Wall-Height",
   "manifest": "https://raw.githubusercontent.com/erithtotl/wall-height/master/module.json",
