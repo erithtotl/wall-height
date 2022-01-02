@@ -24,6 +24,28 @@ With 3.5.2, the Set Elevation macro has been modified to support Multilevel Toke
 
 In addition, libWrapper support has been introduced to improve module compatability.
 
+## Helper Functions
+
+Due to the module beeing setup incorrectly and not wanting to break everyone's maps these helper functions can help you interact with Wall Height data since the regular getFlag\setFlag won't work
+
+```js
+WallHeight.getTop(wallPlaceableOrDocument)
+WallHeight.getBottom(wallPlaceableOrDocument)
+WallHeight.getWallBounds(wallPlaceableOrDocument)
+```
+will return the top and bottom of a wall placeable object or wall document (getWallBounds will return {top,bottom})
+
+```js
+WallHeight.setTop(wallDocument, top)
+WallHeight.setBottom(wallDocument, bottom)
+```
+will set the top\bottom of a wall document - these are both async
+
+```js
+WallHeight.updateAll(update, filter)
+```
+will mirror the canvas.walls.updateAll, the update object is {wallHeightTop,wallHeightBottom} - this is async
+
 ## Project Status
 
 Wall Height was originally released as a proof of concept to show that just a feature was possible by (cole#9640). I am now maintaining and adding to this modules and accepting feature requests.
