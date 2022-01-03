@@ -76,23 +76,38 @@ export function Patch_Walls()
             }
         }
 
+        // This function detemines whether a wall should be included. Add a condition on the wall's height compared to the current token
         libWrapper.register(
             MODULE_ID,
-            "ClockwiseSweepPolygon.prototype._getWalls",
-            function filterWalls(wrapped,...args) {
-                return wrapped(...args).filter(wall => testWallHeight(wall));
+            "ClockwiseSweepPolygon.testWallInclusion",
+            function filterWalls(wrapped, ...args) {
+                return wrapped(...args) && testWallHeight(args[0]);
             },
             'WRAPPER'
         );
 
-        // This function builds the ClockwiseSweepPolygon. Update the elevation just beforehand so we're using the correct token's elevation and height
+        // This function builds the ClockwiseSweepPolygon to determine the token's vision.
+        // Update the elevation just beforehand so we're using the correct token's elevation and height
         libWrapper.register(
             MODULE_ID,
             "Token.prototype.updateVisionSource",
             function updateTokenVisionSource(wrapped, ...args) {
                 updateElevations(this);
                 wrapped(...args);
-            }
+            },
+            'WRAPPER'
+        )
+
+        // This function builds the ClockwiseSweepPolygon to determine the token's light coverage.
+        // Update the elevation just beforehand so we're using the correct token's elevation and height
+        libWrapper.register(
+            MODULE_ID,
+            "Token.prototype.updateLightSource",
+            function updateTokenLightSource(wrapped, ...args) {
+                updateElevations(this);
+                wrapped(...args);
+            },
+            'WRAPPER'
         )
     }
 
