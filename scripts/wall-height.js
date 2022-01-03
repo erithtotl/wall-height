@@ -61,6 +61,39 @@ function registerSettings() {
         type: Boolean,
         default: false,
     });
+
+    globalThis.WallHeight = {
+      getTop: (wall) => {
+        return getWallBounds(wall).top;
+      },
+      getBottom: (wall) => {
+        return getWallBounds(wall).bottom;
+      },
+      getWallBounds: getWallBounds,
+      setTop: async (wallDocument, top) => {
+        const updateData = { flags: { wallHeight: {} } };
+        updateData.flags.wallHeight[TOP_KEY] = top;
+        return await wallDocument.update(updateData);
+      },
+      setBottom: async (wallDocument, bottom) => {
+        const updateData = { flags: { wallHeight: {} } };
+        updateData.flags.wallHeight[BOTTOM_KEY] = bottom;
+        return await wallDocument.update(updateData);
+      },
+      updateAll: async (update, filter) => {
+        const top = update[TOP_KEY];
+        const bottom = update[BOTTOM_KEY];
+        const updateData = {
+          flags: {
+            wallHeight: {},
+          },
+        };
+        if (top !== undefined) updateData.flags.wallHeight[TOP_KEY] = top;
+        if (bottom !== undefined)
+          updateData.flags.wallHeight[BOTTOM_KEY] = bottom;
+        return await canvas.walls.updateAll(updateData, filter);
+      },
+    };
 }
 
 Hooks.on("renderWallConfig", (app, html, data) => {
